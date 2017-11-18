@@ -1,0 +1,20 @@
+$color: #b2577d;
+body {
+    background: $color
+}
+
+@mixin sexy-border($color, $width: 1in) {
+    border: {
+        color: $color;
+        width: $width;
+        style: dashed;
+    }
+}
+
+p {
+    @include sexy-border(blue);
+}
+
+h1 {
+    @include sexy-border(blue, 2px);
+}
