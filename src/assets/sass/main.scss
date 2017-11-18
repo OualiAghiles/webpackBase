@@ -1,9 +1,10 @@
 $color: #b2577d;
 body {
-    background: $color
+    background: url("../images/hero.jpg")
 }
 
-@mixin sexy-border($color, $width: 1in) {
+@mixin sexy-border($color,
+$width: 1in) {
     border: {
         color: $color;
         width: $width;
@@ -16,5 +17,6 @@ p {
 }
 
 h1 {
-    @include sexy-border(blue, 2px);
+    @include sexy-border(blue,
+    2px);
 }

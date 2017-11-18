@@ -1,5 +1,5 @@
 body {
-  background: #b2577d; }
+  background: url(/dist/hero.d0cf429.jpg); }
 
 p {
   border-color: blue;
@@ -11,6 +11,6 @@ h1 {
   border-width: 2px;
   border-style: dashed; }
 h1 {
-  color: #fff;
+  color: blue;
   -ms-transform: translateX(50px);
       transform: translateX(50px); }
