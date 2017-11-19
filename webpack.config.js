@@ -3,7 +3,7 @@ const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const ManifestPlugin = require('webpack-manifest-plugin')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
-const Pug = require('./src/template/index.pug')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 const dev = process.env.NODE_ENV === 'dev'
 
 let cssLoader = [
@@ -22,31 +22,25 @@ let cssLoader = [
 ]
 let config = {
   // les fichier a voir (les entrer)
-  entry: ['./src/template/*.pug','./src/assets/sass/main.scss', './src/assets/js/main.js'],
+  entry: ['./src/template/index.pug', './src/assets/sass/main.scss', './src/assets/js/main.js'],
   // surveille les modification des fichier
   watch: dev,
   // les fichier génerer (les sorties)
   output: {
     // dossier de distribution
-    path: path.resolve(__dirname, 'dist'),
+    path: path.resolve('/dist/'),
     // fichier avec toutes les fonction combiner
     filename: dev ? '[name].js' : '[name].[chunkhash:8].js',
     publicPath: '/dist/'
-    },
+  },
   // Activation du devtool (sourceMap Line)
   devtool: dev ? 'cheap-module-eval-source-map' : 'source-map',
   devServer: {
     // Pour afficher les erreurs sur la page
     overlay: true,
     // Fichiers à distribuer
-    contentBase: path.resolve('./dist'),
-    // CORS
-    headers: {
-      "Access-Control-Allow-Origin": "*",
-      "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH, OPTIONS",
-      "Access-Control-Allow-Headers": "X-Requested-With, content-type, Authorization"
-    }
-  },  
+    port: 9090
+  },
   // les modules
   module: {
     // les regles
@@ -77,12 +71,12 @@ let config = {
         test: /\.(sass|scss)$$/,
         use: ExtractTextPlugin.extract({
           fallback: 'style-loader',
-          use:[...cssLoader, 'sass-loader']
+          use: [...cssLoader, 'sass-loader']
         })
       },
       {
         test: /\.pug/,
-        use: ['html-loader', 'pug-html-loader']
+        loaders: ['html-loader', 'pug-html-loader']
       },
       {
         test: /\.(png|jpe?g|gif|svg|woff2?|eot|ttf|otf)(\?.*)?$/,
@@ -121,8 +115,20 @@ let config = {
   },
   plugins: [
     new ExtractTextPlugin({
-      filename: dev ? '[name].css' : '[name].[contenthash:8].css',
+      filename: dev ? '[name].css' : '[name].[contenthash:8].css'
       // disable: dev
+    }),
+    new HtmlWebpackPlugin({
+      title: 'Webpack test',
+      hash: true,
+      template: 'src/template/index.pug',
+      filename: 'index.html'
+    }),
+    new HtmlWebpackPlugin({
+      title: 'Webpack test',
+      hash: true,
+      template: 'src/template/contact.pug',
+      filename: 'contact.html'
     })
   ]
 }
@@ -131,8 +137,8 @@ if (!dev) {
     sourceMap: false
   })
   )
-  config.plugins.push(new ManifestPlugin ()),
-  config.plugins.push(new CleanWebpackPlugin (['dist'], {
+  config.plugins.push(new ManifestPlugin()),    
+  config.plugins.push(new CleanWebpackPlugin (['dist'],{
     root: path.resolve('./'),
     verbose: true,
     dry: false,
