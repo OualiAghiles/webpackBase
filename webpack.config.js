@@ -22,6 +22,7 @@ let cssLoader = [
 ]
 let config = {
   // les fichier a voir (les entrer)
+  // entry: ['./src/template/index.pug', './src/assets/sass/main.scss', './src/assets/js/main.js'],
   entry: ['./src/template/index.pug', './src/assets/sass/main.scss', './src/assets/js/main.js'],
   // surveille les modification des fichier
   watch: dev,
@@ -30,8 +31,7 @@ let config = {
     // dossier de distribution
     path: path.resolve('/dist/'),
     // fichier avec toutes les fonction combiner
-    filename: dev ? '[name].js' : '[name].[chunkhash:8].js',
-    publicPath: '/dist/'
+    filename: dev ? '[name].js' : '[name].[chunkhash:8].js'
   },
   // Activation du devtool (sourceMap Line)
   devtool: dev ? 'cheap-module-eval-source-map' : 'source-map',
@@ -39,7 +39,8 @@ let config = {
     // Pour afficher les erreurs sur la page
     overlay: true,
     // Fichiers à distribuer
-    port: 9090
+    port: 9090,
+    contentBase: '/dist/'
   },
   // les modules
   module: {
@@ -57,7 +58,7 @@ let config = {
         // fichier a exlure
         exclude: /(node_modules|bower_components)/,
         // loader a utiliser
-        use:{
+        use: {
           loader: 'babel-loader'
         }
       },
@@ -69,10 +70,10 @@ let config = {
       {
         // sass reading
         test: /\.(sass|scss)$$/,
-        use: ExtractTextPlugin.extract({
+        use: ['css-hot-loader'].concat(ExtractTextPlugin.extract({
           fallback: 'style-loader',
           use: [...cssLoader, 'sass-loader']
-        })
+        }))
       },
       {
         test: /\.pug/,
@@ -119,13 +120,13 @@ let config = {
       // disable: dev
     }),
     new HtmlWebpackPlugin({
-      title: 'Webpack test',
+      title: 'Home',
       hash: true,
       template: 'src/template/index.pug',
       filename: 'index.html'
     }),
     new HtmlWebpackPlugin({
-      title: 'Webpack test',
+      title: 'Contact',
       hash: true,
       template: 'src/template/contact.pug',
       filename: 'contact.html'
