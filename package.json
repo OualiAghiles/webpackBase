@@ -4,7 +4,7 @@
   "description": "simple webpack config [babel,sass,pug,liveserver,imgmin]",
   "main": "index.js",
   "scripts": {
-    "dev": "cross-env NODE_ENV=dev webpack-dev-server --hot",
+    "dev": "cross-env NODE_ENV=dev webpack-dev-server --hot --inline",
     "prod": "cross-env NODE_ENV=production webpack",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -17,6 +17,7 @@
     "babel-preset-es2015": "^6.18.0",
     "clean-webpack-plugin": "^0.1.17",
     "cross-env": "^5.1.1",
+    "css-hot-loader": "^1.3.3",
     "css-loader": "^0.28.7",
     "eslint": "^4.11.0",
     "eslint-config-standard": "^10.2.1",
