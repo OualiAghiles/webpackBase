@@ -1,25 +1,31 @@
-nav.navbar.navbar-expand-lg.navbar-light.bg-light
-  a.navbar-brand(href='#') Navbar
-  button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbarSupportedContent', aria-controls='navbarSupportedContent', aria-expanded='false', aria-label='Toggle navigation')
-    span.navbar-toggler-icon
-  #navbarSupportedContent.collapse.navbar-collapse
-    ul.navbar-nav.mr-auto
-      li.nav-item.active
-        a.nav-link(href='index.html')
-          | Home 
-          span.sr-only (current)
-      li.nav-item
-        a.nav-link(href='contact.html') contact
-      li.nav-item.dropdown
-        a#navbarDropdown.nav-link.dropdown-toggle(href='#', role='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false')
-          | Dropdown
-        .dropdown-menu(aria-labelledby='navbarDropdown')
-          a.dropdown-item(href='#') Action
-          a.dropdown-item(href='#') Another action
-          .dropdown-divider
-          a.dropdown-item(href='#') Something else here
-      li.nav-item
-        a.nav-link.disabled(href='#') Disabled
-    form.form-inline.my-2.my-lg-0
-      input.form-control.mr-sm-2(type='search', placeholder='Search', aria-label='Search')
-      button.btn.btn-outline-success.my-2.my-sm-0(type='submit') Search
+header.demo-header.mdl-layout__header.mdl-color--grey-800.mdl-color-text--grey-600.is-casting-shadow
+  .mdl-layout__drawer-button(aria-expanded='false', role='button', tabindex='0')
+    i.material-icons 
+  .mdl-layout__header-row
+    span.mdl-layout-title Home
+    .mdl-layout-spacer
+    .mdl-textfield.mdl-js-textfield.mdl-textfield--expandable.is-upgraded(data-upgraded=',MaterialTextfield')
+      label.mdl-button.mdl-js-button.mdl-button--icon(for='search', data-upgraded=',MaterialButton')
+        i.material-icons search
+      .mdl-textfield__expandable-holder
+        input#search.mdl-textfield__input(type='text')
+        label.mdl-textfield__label(for='search') Enter your query...
+    button#hdrbtn.mdl-button.mdl-js-button.mdl-js-ripple-effect.mdl-button--icon(data-upgraded=',MaterialButton,MaterialRipple')
+      i.material-icons more_vert
+      span.mdl-button__ripple-container
+        span.mdl-ripple.is-animating(style='width: 92.5097px; height: 92.5097px; transform: translate(-50%, -50%) translate(21px, 19px);')
+    .mdl-menu__container.is-upgraded(style='right: 40px; top: 48px; width: 141.533px; height: 160px;')
+      .mdl-menu__outline.mdl-menu--bottom-right(style='width: 141.533px; height: 160px;')
+      ul.mdl-menu.mdl-js-menu.mdl-js-ripple-effect.mdl-menu--bottom-right.mdl-js-ripple-effect--ignore-events(for='hdrbtn', data-upgraded=',MaterialMenu,MaterialRipple', style='clip: rect(0px, 141.533px, 0px, 141.533px);')
+        li.mdl-menu__item.mdl-js-ripple-effect(tabindex='-1', data-upgraded=',MaterialRipple', style='')
+          | About
+          span.mdl-menu__item-ripple-container
+            span.mdl-ripple
+        li.mdl-menu__item.mdl-js-ripple-effect(tabindex='-1', data-upgraded=',MaterialRipple', style='')
+          | Contact
+          span.mdl-menu__item-ripple-container
+            span.mdl-ripple
+        li.mdl-menu__item.mdl-js-ripple-effect(tabindex='-1', data-upgraded=',MaterialRipple', style='')
+          | Legal information
+          span.mdl-menu__item-ripple-container
+            span.mdl-ripple

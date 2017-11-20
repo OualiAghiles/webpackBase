@@ -56,7 +56,8 @@ let config = {
         // test les extention des fichier *.js
         test: /\.js$/,
         // fichier a exlure
-        exclude: /(node_modules|bower_components)/,
+        exclude: /(node_modules|bower_components|)/,
+        exclude: path.resolve(__dirname, "./src/assets/sass/mdl"),
         // loader a utiliser
         use: {
           loader: 'babel-loader'
@@ -138,7 +139,7 @@ if (!dev) {
     sourceMap: false
   })
   )
-  config.plugins.push(new ManifestPlugin()),    
+  config.plugins.push(new ManifestPlugin()),
   config.plugins.push(new CleanWebpackPlugin (['dist'],{
     root: path.resolve('./'),
     verbose: true,
